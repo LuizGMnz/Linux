@@ -1,0 +1,71 @@
+clear
+opcao=0
+
+while test $opcao != "Z"
+do
+
+echo "Aluno: ...$USER...
+
+Selecione a opcao:
+
+P = Procurar uma palavra em um arquivo texto
+N = Exibir a quantidade de arquivos de um diretorio
+
+Z = Encerrar o script"
+
+read opcao
+
+case $opcao in
+"P"|"p")echo "Digite o nome de um arquivo com seu respectivo caminho:"
+read arquivo
+if [ -e "$arquivo" ]; then
+	echo "Arquivo encontrado.
+Informe a palavra que deseja buscar no arquivo: "
+	read palavra
+	if grep "$palavra" "$arquivo"; then
+	
+	echo "***Digite ENTER para voltar para as opcoes.***"
+	read
+	clear
+	continue
+	else
+	echo "Palavra nao encontrada!
+***Digite ENTER para voltar para as opcoes.***"
+	read
+	clear
+	continue
+	fi
+else
+	echo "Arquivo nao existe.
+***Digite ENTER para voltar para as opcoes.***"
+	read
+	clear
+	continue
+fi;;
+
+"N"|"n")echo "Digite o nome de um diretorio com seu respectivo caminho:"
+read diretorio
+if [ -e "$diretorio" ]; then
+	echo "Diretorio encontrado.
+Numero de arquivos no diretorio:" 
+	quantidade=$(ls -l "$diretorio" | wc -l)
+	echo "Existem $quantidade de arquivos nesse diretorio."
+	echo "***Digite ENTER para voltar para as opcoes.***"
+	read
+	clear
+else
+	echo "Diretorio nao encontrado.
+***Digite ENTER para voltar para as opcoes.***"
+	read
+	clear
+	continue
+fi;;
+"Z"|"z") clear
+break;;
+*) echo "Opcao invalida!
+
+***Digite ENTER para retornar as opcoes.***"
+read
+clear;;
+esac
+done

@@ -1,0 +1,31 @@
+clear
+echo "CALCULADORA
+
+Selecione a operacao aritmetica:
+
+A = Adicao
+S = Subtracao
+M = Multiplicacao
+D = Divisao"
+
+read operacao
+
+if	[ "$operacao" = "A" ] || [ "$operacao" = "a" ] || 
+	[ "$operacao" = "S" ] || [ "$operacao" = "s" ] ||
+	[ "$operacao" = "M" ] || [ "$operacao" = "m" ] || 
+	[ "$operacao" = "D" ] || [ "$operacao" = "d" ]
+then
+echo "Escolha o primeiro operando: "
+read operando1
+echo "Escolha o segundo operando: "
+read operando2
+
+case $operacao in
+"a"|"A") echo "OPERACAO: ADICAO - RESULTADO = $((operando1 + operando2))";;
+"s"|"S") echo "OPERACAO: SUBTRACAO - RESULTADO = $((operando1 - operando2))";;
+"m"|"M") echo "OPERACAO: MULTIPLICACAO - RESULTADO = $((operando1 * operando2))";;
+"d"|"D") echo "OPERACAO: DIVISAO - RESULTADO = $((operando1 / operando2))";;
+esac
+else
+echo "Opcao invalida."
+fi

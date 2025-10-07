@@ -1,0 +1,66 @@
+clear
+opcao=0
+
+while test $opcao != 99
+do
+
+echo "Login: ...$USER...
+
+Selecione a opcao:
+
+1 = Listar o conteudo um arquivo texto
+2 = Listar um diretorio
+3 = Calcular a area de um retangulo
+
+99 = Encerrar o script"
+
+read opcao
+case $opcao in
+1) echo "Digite o nome do arquivo: "
+read arquivo
+if [ -e "$arquivo" ]; then
+	echo "Listando arquivo: "
+	more $arquivo
+	echo "***Digite ENTER para voltar para as opcoes.***"
+	read
+	clear
+else
+	echo "O arquivo nao existe.
+
+***Digite ENTER para voltar para as opcoes.***"
+	read
+	clear
+	continue
+fi;;
+2) echo "Digite o nome do diretorio: "
+read diretorio
+if [ -e "$diretorio" ]; then
+	echo "Listando diretorio no formato longo, paginando a saida: "
+	ls -l | more "$diretorio"
+	echo "***Digite ENTER para voltar para as opcoes.***"
+	read
+	clear
+else
+	echo "O diretorio nao existe."
+	echo "***Digite ENTER para voltar para as opcoes.***"
+	read
+	clear
+	continue
+fi;;
+3) echo "Digite a altura do retangulo: "
+read altura
+echo "Digite a largura do retangulo: "
+read largura
+echo "AREA = $((altura * largura))"
+echo "***Digite ENTER para voltar para as opcoes.***"
+read
+clear;;
+99) clear
+break;;
+*) echo "Opcao invalida!
+
+***Digite ENTER para retornar as opcoes***"
+read
+clear
+esac
+done
